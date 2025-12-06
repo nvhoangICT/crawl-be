@@ -58,7 +58,7 @@ export class AdminApiService {
     try {
       const request: HotelCreateRequest = mapHotelLikeToApiRequest(hotel, detailLink, sourceSite, finalCrawledBy, finalCrawlerName);
       
-      logger.info('Calling admin API to create hotel', { 
+      logger.info('Calling admin API to create hotel...', { 
         name: request.name, 
         detailLink: request.detailLink 
       });
