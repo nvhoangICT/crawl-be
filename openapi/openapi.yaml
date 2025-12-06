@@ -1,0 +1,979 @@
+openapi: 3.0.3
+info:
+  title: Crawl Data Service API
+  version: 1.0.0
+  description: >
+    Service for crawling structured data (news, hotels, restaurants, attractions)
+    via category-specific crawlers. Supports synchronous, asynchronous (job-based),
+    and streaming (SSE) crawl operations.
+  contact:
+    name: API Support
+servers:
+  - url: http://localhost:4000
+    description: Development server
+  - url: https://api.example.com
+    description: Production server
+
+paths:
+  /api/health:
+    get:
+      summary: Service health status
+      description: Check if the service is running and get uptime information
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              example:
+                status: ok
+                uptime: 12345.67
+
+  /api/crawl/list:
+    post:
+      summary: Crawl list operation
+      description: |
+        Crawl a list of items from a page (e.g., list of hotels, restaurants, attractions).
+        This endpoint blocks until the crawl is complete. For long-running operations,
+        consider using `/api/crawl/job` (async) or `/api/crawl/stream` (streaming).
+      tags:
+        - Crawl
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrawlRequest'
+            examples:
+              traveloka:
+                summary: Traveloka hotels list
+                value:
+                  category: hotels
+                  site: traveloka
+                  url: https://www.traveloka.com/hotels
+                  options:
+                    locale: vi-VN
+                    maxPages: 5
+      responses:
+        '200':
+          description: Crawl succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrawlSuccessResponse'
+        '400':
+          description: Invalid request or crawl failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrawlErrorResponse'
+
+  /api/crawl/detail:
+    post:
+      summary: Crawl detail operation
+      description: |
+        Crawl detailed information for a single item (e.g., hotel details, restaurant details,
+        attraction details). This endpoint blocks until the crawl is complete. For long-running
+        operations, consider using `/api/crawl/job` (async) or `/api/crawl/stream` (streaming).
+      tags:
+        - Crawl
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrawlRequest'
+            examples:
+              googleMaps:
+                summary: Google Maps attraction detail
+                value:
+                  category: attraction
+                  site: googlemaps
+                  url: https://www.google.com/maps/place/Diamond+Westlake+Suites
+                  options:
+                    headless: true
+                    timeout: 60000
+      responses:
+        '200':
+          description: Crawl succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrawlSuccessResponse'
+        '400':
+          description: Invalid request or crawl failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrawlErrorResponse'
+
+  /api/crawl/job:
+    post:
+      summary: Create asynchronous crawl job
+      description: |
+        Create a crawl job that runs in the background. Use `/api/crawl/status/:jobId`
+        to check progress and `/api/crawl/result/:jobId` to get results when complete.
+      tags:
+        - Crawl Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrawlRequest'
+      responses:
+        '202':
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrawlJobResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrawlErrorResponse'
+
+  /api/crawl/stream:
+    post:
+      summary: Streaming crawl operation (SSE)
+      description: |
+        Trigger a crawl job with Server-Sent Events (SSE) streaming. Data is sent
+        incrementally as it's crawled, similar to ChatGPT streaming. Events include
+        progress updates, data chunks, and completion status.
+      tags:
+        - Crawl
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrawlRequest'
+      responses:
+        '200':
+          description: Stream of crawl events
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: Server-Sent Events stream
+              examples:
+                progress:
+                  summary: Progress event
+                  value: |
+                    data: {"type":"progress","message":"Loading page...","progress":10,"requestId":"abc123","timestamp":1234567890}
+
+                    data: {"type":"data","data":{...},"requestId":"abc123","timestamp":1234567890}
+
+                    data: {"type":"complete","totalItems":1,"duration":5000,"requestId":"abc123","timestamp":1234567890}
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrawlErrorResponse'
+
+  /api/crawl/status/{jobId}:
+    get:
+      summary: Get crawl job status
+      description: Check the status and progress of an asynchronous crawl job
+      tags:
+        - Crawl Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: Job ID returned from POST /api/crawl/job
+          schema:
+            type: string
+            example: job-1234567890-abc123
+      responses:
+        '200':
+          description: Job status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrawlJobStatusResponse'
+        '400':
+          description: Missing jobId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/crawl/result/{jobId}:
+    get:
+      summary: Get crawl job result
+      description: |
+        Retrieve the result of a completed crawl job. Returns 202 if job is still
+        running, 500 if job failed, or 200 with data if completed.
+      tags:
+        - Crawl Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: Job ID returned from POST /api/crawl/job
+          schema:
+            type: string
+            example: job-1234567890-abc123
+      responses:
+        '200':
+          description: Job completed, result available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrawlJobResultResponse'
+        '202':
+          description: Job still running
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [queued, running]
+                    example: running
+                  message:
+                    type: string
+                    example: Job chưa hoàn thành, vui lòng kiểm tra lại sau.
+        '400':
+          description: Missing jobId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Job or result not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Job failed or server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [error]
+                    example: error
+                  errorMessage:
+                    type: string
+                    example: Failed to crawl data
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - uptime
+      properties:
+        status:
+          type: string
+          enum: [ok]
+          example: ok
+        uptime:
+          type: number
+          format: double
+          description: Process uptime in seconds
+          example: 12345.67
+
+    CrawlRequest:
+      type: object
+      required:
+        - category
+        - site
+        - url
+      properties:
+        category:
+          $ref: '#/components/schemas/Category'
+        site:
+          type: string
+          minLength: 2
+          description: >
+            Site identifier handled by the crawler for the specified category.
+            Examples:
+            - attraction: `tripadvisor`
+            - maps: `googlemaps`
+            - hotels: `agoda`, `booking`, `traveloka`, `googlemaps`
+            - restaurant: `foody`
+            - news: `vnexpress`, `tuoitre`
+            - landmarks: `googlemaps`
+          example: googlemaps
+        url:
+          type: string
+          format: uri
+          description: Absolute URL of the page to crawl
+          example: https://www.google.com/maps/place/Diamond+Westlake+Suites
+        options:
+          $ref: '#/components/schemas/CrawlOptions'
+
+    CrawlOptions:
+      type: object
+      properties:
+        locale:
+          type: string
+          description: Locale for the crawl (e.g., en-US, vi-VN)
+          example: en-US
+        timeout:
+          type: integer
+          minimum: 1
+          description: Maximum navigation/wait time in milliseconds
+          default: 30000
+          example: 60000
+        maxPages:
+          type: integer
+          minimum: 1
+          description: Maximum number of pages to crawl (for paginated content)
+          example: 10
+        headless:
+          type: boolean
+          description: Run browser in headless mode
+          default: true
+          example: true
+
+    Category:
+      type: string
+      enum:
+        - news
+        - hotels
+        - restaurant
+        - attraction
+        - maps
+        - landmarks
+      description: Category of content to crawl
+
+    CrawlSuccessResponse:
+      type: object
+      required:
+        - success
+        - category
+        - site
+        - url
+        - data
+      properties:
+        success:
+          type: boolean
+          enum: [true]
+        category:
+          $ref: '#/components/schemas/Category'
+        site:
+          type: string
+        url:
+          type: string
+          format: uri
+        data:
+          $ref: '#/components/schemas/CrawlResultData'
+
+    CrawlErrorResponse:
+      type: object
+      required:
+        - success
+        - error
+      properties:
+        success:
+          type: boolean
+          enum: [false]
+        category:
+          $ref: '#/components/schemas/Category'
+        site:
+          type: string
+        url:
+          type: string
+          format: uri
+        error:
+          type: string
+          example: Invalid request payload
+        details:
+          type: object
+          description: Additional error context (validation info, supported categories, etc.)
+          additionalProperties: true
+
+    ErrorResponse:
+      type: object
+      required:
+        - success
+        - error
+      properties:
+        success:
+          type: boolean
+          enum: [false]
+        error:
+          type: string
+
+    CrawlJobResponse:
+      type: object
+      required:
+        - jobId
+        - status
+        - progress
+        - message
+        - category
+        - site
+        - url
+      properties:
+        jobId:
+          type: string
+          description: Unique job identifier
+          example: job-1234567890-abc123
+        status:
+          type: string
+          enum: [queued]
+          description: Initial job status
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Job progress percentage
+          example: 0
+        message:
+          type: string
+          description: Human-readable message
+          example: Đã nhận yêu cầu crawl, vui lòng kiểm tra trạng thái qua endpoint /status.
+        category:
+          $ref: '#/components/schemas/Category'
+        site:
+          type: string
+        url:
+          type: string
+          format: uri
+
+    CrawlJobStatusResponse:
+      type: object
+      required:
+        - jobId
+        - status
+        - progress
+        - category
+        - site
+        - url
+      properties:
+        jobId:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, done, error]
+          description: Current job status
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Job progress percentage
+        currentStep:
+          type: string
+          nullable: true
+          description: Current step description
+        createdAt:
+          type: string
+          format: date-time
+          description: Job creation timestamp
+        startedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Job start timestamp
+        finishedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Job completion timestamp
+        errorMessage:
+          type: string
+          nullable: true
+          description: Error message if job failed
+        category:
+          $ref: '#/components/schemas/Category'
+        site:
+          type: string
+        url:
+          type: string
+          format: uri
+
+    CrawlJobResultResponse:
+      type: object
+      required:
+        - status
+        - data
+      properties:
+        status:
+          type: string
+          enum: [done]
+        data:
+          $ref: '#/components/schemas/CrawlResultData'
+
+    CrawlResultData:
+      oneOf:
+        - $ref: '#/components/schemas/NewsItem'
+        - $ref: '#/components/schemas/HotelItem'
+        - $ref: '#/components/schemas/RestaurantItem'
+        - $ref: '#/components/schemas/AttractionItem'
+        - $ref: '#/components/schemas/MapsItem'
+      discriminator:
+        propertyName: category
+        mapping:
+          news: '#/components/schemas/NewsItem'
+          hotels: '#/components/schemas/HotelItem'
+          restaurant: '#/components/schemas/RestaurantItem'
+          attraction: '#/components/schemas/AttractionItem'
+          maps: '#/components/schemas/MapsItem'
+
+    NewsItem:
+      type: object
+      required:
+        - title
+        - content
+      properties:
+        title:
+          type: string
+          description: Article title
+        summary:
+          type: string
+          description: Article summary or excerpt
+        content:
+          type: string
+          description: Full article content
+        author:
+          type: string
+          description: Article author name
+        publishedAt:
+          type: string
+          format: date-time
+          description: Publication date and time
+        tags:
+          type: array
+          items:
+            type: string
+          description: Article tags or categories
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: URLs of images in the article
+
+    HotelItem:
+      type: object
+      required:
+        - name
+        - address
+      properties:
+        name:
+          type: string
+          description: Hotel name
+        address:
+          type: string
+          description: Hotel address
+        rating:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 5
+          description: Average rating (0-5 stars)
+        reviewCount:
+          type: integer
+          minimum: 0
+          description: Total number of reviews
+        starRating:
+          type: integer
+          minimum: 1
+          maximum: 5
+          description: Official star rating (1-5 stars)
+        ratingDistribution:
+          type: object
+          description: Distribution of ratings by star level
+          properties:
+            five:
+              type: integer
+              minimum: 0
+              description: Number of 5-star reviews
+            four:
+              type: integer
+              minimum: 0
+              description: Number of 4-star reviews
+            three:
+              type: integer
+              minimum: 0
+              description: Number of 3-star reviews
+            two:
+              type: integer
+              minimum: 0
+              description: Number of 2-star reviews
+            one:
+              type: integer
+              minimum: 0
+              description: Number of 1-star reviews
+        description:
+          type: string
+          description: Detailed description from Google Maps or hotels source
+        openHoursText:
+          type: string
+          description: Opening hours or availability text
+        phone:
+          type: string
+          description: Phone number
+        checkInTime:
+          type: string
+          description: Check-in time (if available)
+          example: 2:00 PM
+        checkOutTime:
+          type: string
+          description: Check-out time (if available)
+          example: 12:00 PM
+        priceFrom:
+          type: number
+          format: float
+          description: Starting price per night
+        currency:
+          type: string
+          description: Currency code (e.g., USD, VND)
+          example: USD
+        amenities:
+          type: array
+          items:
+            type: string
+          description: List of amenities (e.g., "Free Wi-Fi", "Pool", "Gym")
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: URLs of hotels images
+
+    RestaurantItem:
+      type: object
+      required:
+        - name
+        - address
+      properties:
+        name:
+          type: string
+          description: Restaurant name
+        address:
+          type: string
+          description: Restaurant address
+        rating:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 5
+          description: Average rating (0-5 stars)
+        priceRange:
+          type: string
+          description: Price range (e.g., "$$", "Moderate")
+        cuisine:
+          type: array
+          items:
+            type: string
+          description: Types of cuisine (e.g., "Vietnamese", "Italian")
+        openHoursText:
+          type: string
+          description: Opening hours as text
+        phone:
+          type: string
+          description: Phone number
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: URLs of restaurant images
+
+    AttractionItem:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Attraction or place name
+        address:
+          type: string
+          description: Address of the place
+        rating:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 5
+          description: Average rating (0-5 stars)
+        reviewCount:
+          type: integer
+          minimum: 0
+          description: Total number of reviews
+        starRating:
+          type: integer
+          minimum: 1
+          maximum: 5
+          description: Official star rating (for hotels, typically 1-5 stars)
+        ratingDistribution:
+          type: object
+          description: Distribution of ratings by star level
+          properties:
+            five:
+              type: integer
+              minimum: 0
+              description: Number of 5-star reviews
+            four:
+              type: integer
+              minimum: 0
+              description: Number of 4-star reviews
+            three:
+              type: integer
+              minimum: 0
+              description: Number of 3-star reviews
+            two:
+              type: integer
+              minimum: 0
+              description: Number of 2-star reviews
+            one:
+              type: integer
+              minimum: 0
+              description: Number of 1-star reviews
+        description:
+          type: string
+          description: Detailed description of the place
+        ticketPriceText:
+          type: string
+          description: Ticket price information (for attractions)
+        openHoursText:
+          type: string
+          description: Opening hours as text
+        phone:
+          type: string
+          description: Phone number
+        checkInTime:
+          type: string
+          description: Check-in time (for hotels)
+          example: 2:00 PM
+        checkOutTime:
+          type: string
+          description: Check-out time (for hotels)
+          example: 12:00 PM
+        amenities:
+          type: array
+          items:
+            type: string
+          description: List of amenities or features
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: URLs of images
+
+    MapsItem:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Place or location name
+        address:
+          type: string
+          description: Address of the place
+        rating:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 5
+          description: Average rating (0-5 stars)
+        reviewCount:
+          type: integer
+          minimum: 0
+          description: Total number of reviews
+        starRating:
+          type: integer
+          minimum: 1
+          maximum: 5
+          description: Official star rating (for hotels, typically 1-5 stars)
+        ratingDistribution:
+          type: object
+          description: Distribution of ratings by star level
+          properties:
+            five:
+              type: integer
+              minimum: 0
+              description: Number of 5-star reviews
+            four:
+              type: integer
+              minimum: 0
+              description: Number of 4-star reviews
+            three:
+              type: integer
+              minimum: 0
+              description: Number of 3-star reviews
+            two:
+              type: integer
+              minimum: 0
+              description: Number of 2-star reviews
+            one:
+              type: integer
+              minimum: 0
+              description: Number of 1-star reviews
+        description:
+          type: string
+          description: Detailed description of the place
+        ticketPriceText:
+          type: string
+          description: Ticket price information (for attractions)
+        openHoursText:
+          type: string
+          description: Opening hours as text
+        phone:
+          type: string
+          description: Phone number
+        website:
+          type: string
+          format: uri
+          description: Website URL
+          example: https://example.com
+        checkInTime:
+          type: string
+          description: Check-in time (for hotels)
+          example: 2:00 PM
+        checkOutTime:
+          type: string
+          description: Check-out time (for hotels)
+          example: 12:00 PM
+        amenities:
+          type: array
+          items:
+            type: string
+          description: List of amenities or features
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: URLs of images
+
+    StreamEvent:
+      oneOf:
+        - $ref: '#/components/schemas/StreamProgressEvent'
+        - $ref: '#/components/schemas/StreamDataEvent'
+        - $ref: '#/components/schemas/StreamErrorEvent'
+        - $ref: '#/components/schemas/StreamCompleteEvent'
+      discriminator:
+        propertyName: type
+
+    StreamProgressEvent:
+      type: object
+      required:
+        - type
+        - message
+        - requestId
+        - timestamp
+      properties:
+        type:
+          type: string
+          enum: [progress]
+        message:
+          type: string
+          description: Progress message
+          example: Loading page...
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Progress percentage
+          example: 50
+        requestId:
+          type: string
+          description: Unique request identifier
+        timestamp:
+          type: integer
+          format: int64
+          description: Event timestamp in milliseconds
+
+    StreamDataEvent:
+      type: object
+      required:
+        - type
+        - data
+        - requestId
+        - timestamp
+      properties:
+        type:
+          type: string
+          enum: [data]
+        data:
+          description: Crawled data item(s)
+          oneOf:
+            - $ref: '#/components/schemas/CrawlResultData'
+            - type: array
+              items:
+                $ref: '#/components/schemas/CrawlResultData'
+        index:
+          type: integer
+          description: Index in array (if data is an array)
+        total:
+          type: integer
+          description: Total items in array (if data is an array)
+        requestId:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+
+    StreamErrorEvent:
+      type: object
+      required:
+        - type
+        - error
+        - requestId
+        - timestamp
+      properties:
+        type:
+          type: string
+          enum: [error]
+        error:
+          type: string
+          description: Error message
+        requestId:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+
+    StreamCompleteEvent:
+      type: object
+      required:
+        - type
+        - requestId
+        - timestamp
+      properties:
+        type:
+          type: string
+          enum: [complete]
+        totalItems:
+          type: integer
+          description: Total number of items crawled
+        duration:
+          type: integer
+          description: Total crawl duration in milliseconds
+        requestId:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
