@@ -62,12 +62,7 @@ export class PersistenceService {
     // Use detailLink from hotel if available, otherwise use request URL
     const detailLink = (hotel as HotelItem).detailLink || request.url;
     
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values
-    const crawledBy = '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const crawlerName = 'default-crawler'; // TODO: Replace with actual crawler name
-    
-    await this.adminApiService.createHotel(hotel, detailLink, request.site, crawledBy, crawlerName);
+    await this.adminApiService.createHotel(hotel, detailLink, request.site);
   }
 
   private async persistLandmark(

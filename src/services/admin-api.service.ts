@@ -47,21 +47,17 @@ export class AdminApiService {
     hotel: HotelLike,
     detailLink: string,
     sourceSite: string,
-    crawledBy?: string,
-    crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: HotelCreateRequest = mapHotelLikeToApiRequest(hotel, detailLink, sourceSite, finalCrawledBy, finalCrawlerName);
+      const request: HotelCreateRequest = mapHotelLikeToApiRequest(hotel, detailLink, sourceSite);
       
       logger.info('Calling admin API to create hotel...', { 
         name: request.name, 
         detailLink: request.detailLink 
       });
+
+      // Log debug request
+      logger.info('Debug request', { request });
 
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/hotel',

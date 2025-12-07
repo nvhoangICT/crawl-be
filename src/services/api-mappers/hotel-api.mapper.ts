@@ -32,10 +32,6 @@ export interface HotelCreateRequest {
   ratingCleanliness?: number;
   description?: string;
   distanceToCenter?: string;
-  lat?: string;
-  lng?: string;
-  crawledBy?: string;
-  crawlerName?: string;
 }
 
 function extractProvince(address?: string): string | undefined {
@@ -58,13 +54,6 @@ function formatPrice(priceFrom?: number, currency?: string | null): string | und
   }
   const normalized = priceFrom % 1 === 0 ? priceFrom.toFixed(0) : priceFrom.toFixed(2);
   return currency ? `${normalized} ${currency}` : normalized;
-}
-
-function formatCoordinate(value?: number | null): string | undefined {
-  if (typeof value !== 'number' || !Number.isFinite(value)) {
-    return undefined;
-  }
-  return value.toString();
 }
 
 function extractWebsite(detailLink: string, sourceSite?: string): string | undefined {
@@ -106,8 +95,6 @@ export function mapHotelLikeToApiRequest(
   hotel: HotelLike,
   detailLink: string,
   sourceSite: string,
-  crawledBy?: string,
-  crawlerName?: string,
 ): HotelCreateRequest {
   const name = hotel.name?.trim();
   const safeName = name && name.length > 0 ? name : 'Unknown hotel';
@@ -135,6 +122,7 @@ export function mapHotelLikeToApiRequest(
     province,
     phone: hotel.phone ?? undefined,
     website,
+    price: priceText,
     imageUrl: firstImage,
     detailLink,
     services,
@@ -143,10 +131,5 @@ export function mapHotelLikeToApiRequest(
     ratingValue,
     description: hotel.description ?? undefined,
     distanceToCenter,
-    lat: formatCoordinate(hotel.latitude),
-    lng: formatCoordinate(hotel.longitude),
-    crawledBy: crawledBy || undefined,
-    crawlerName: crawlerName || undefined,
   };
 }
-
