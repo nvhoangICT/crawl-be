@@ -1,4 +1,4 @@
-# Crawl Data Service
+# Travel Crawl Data Service
 
 Service TypeScript/Express dùng Playwright + Crawlee để thu thập dữ liệu từ nhiều trang (news, hotels, restaurant, attraction, landmarks, maps). Service hỗ trợ nhiều loại API endpoints: synchronous, asynchronous (job-based), và streaming (SSE) để phù hợp với các use case khác nhau.
 
