@@ -58,6 +58,7 @@ export interface HotelItem {
   latitude?: number;
   longitude?: number;
   detailLink?: string;
+  accommodationType?: string;
 }
 
 export interface RestaurantItem {

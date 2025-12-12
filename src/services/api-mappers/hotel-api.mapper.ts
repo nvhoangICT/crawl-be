@@ -122,7 +122,9 @@ export function mapHotelLikeToApiRequest(
 
   return {
     name: safeName,
-    accommodationType: sourceSite || 'hotel',
+    accommodationType: (sourceSite === 'googlemaps' && hotel.accommodationType) 
+      ? hotel.accommodationType 
+      : (sourceSite || 'hotel'),
     rating: ratingValue !== undefined ? ratingValue.toString() : undefined,
     address: hotel.address ?? undefined,
     province,

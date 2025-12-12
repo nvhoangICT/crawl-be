@@ -427,6 +427,33 @@ export async function crawlGoogleMapsHotel(
     }
   }
 
+  // Extract accommodation type from nested span structure
+  // Path: div.lMbq3e > div.LBgpqf > div.kqShb > div.fontBodyMedium dmRWX > span > span.mgr77e > span > span > span > span
+  let accommodationType: string | undefined;
+  try {
+    const accommodationTypeSelectors = [
+      'div.lMbq3e div.LBgpqf div.kqShb div.fontBodyMedium span span.mgr77e span span span span',
+      'div.lMbq3e div.LBgpqf div.kqShb span span.mgr77e span span span span',
+      'div.lMbq3e div.LBgpqf span span.mgr77e span span span span',
+      'div.lMbq3e span span.mgr77e span span span span',
+      'div.lMbq3e span.mgr77e span span span span',
+    ];
+    
+    for (const selector of accommodationTypeSelectors) {
+      const locator = page.locator(selector).first();
+      if (await locator.count() > 0) {
+        const text = await locator.textContent();
+        const normalized = text?.trim();
+        if (normalized && normalized.length > 0) {
+          accommodationType = normalized;
+          break;
+        }
+      }
+    }
+  } catch {
+    // Continue if accommodation type not found
+  }
+
   // Format 2: "5 4 3 2 1 4.4 925 reviews" from div.PPCwl.cYOgid
   const ratingInfoText = await getFirstText(page, [
     'div.PPCwl.cYOgid',
@@ -552,7 +579,7 @@ export async function crawlGoogleMapsHotel(
         const ariaLabel = await locator.getAttribute('aria-label');
         const text = await locator.textContent();
 
-        website = normalizeWebsite(href) || normalizeWebsite(ariaLabel || undefined) || normalizeWebsite(text || undefined);
+        website = normalizeWebsite(href ?? undefined) || normalizeWebsite(ariaLabel ?? undefined) || normalizeWebsite(text ?? undefined);
         if (website) break;
       }
     }
@@ -564,7 +591,7 @@ export async function crawlGoogleMapsHotel(
         const text = await element.textContent();
         const href = await element.getAttribute('href');
 
-        website = normalizeWebsite(href) || normalizeWebsite(text || undefined);
+        website = normalizeWebsite(href ?? undefined) || normalizeWebsite(text ?? undefined);
         if (website) break;
       }
     }
@@ -674,6 +701,7 @@ export async function crawlGoogleMapsHotel(
     images,
     latitude,
     longitude,
+    accommodationType,
   };
 
   onStream?.({

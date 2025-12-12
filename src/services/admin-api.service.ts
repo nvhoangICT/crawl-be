@@ -30,8 +30,8 @@ export class AdminApiService {
   private readonly baseUrl: string;
 
   constructor() {
-    // this.baseUrl = process.env.ADMIN_SERVICE_URL || 'http://a238f3f4e2b754227ad9a9c65b31b43e-1948367635.ap-southeast-1.elb.amazonaws.com/api/admin/crawl-data';
-    this.baseUrl = process.env.ADMIN_SERVICE_URL || 'http://localhost:8081/travel';
+    this.baseUrl = process.env.ADMIN_SERVICE_URL || 'http://a238f3f4e2b754227ad9a9c65b31b43e-1948367635.ap-southeast-1.elb.amazonaws.com/api/admin/crawl-data';
+    // this.baseUrl = process.env.ADMIN_SERVICE_URL || 'http://localhost:8081/travel';
     this.client = axios.create({
       baseURL: this.baseUrl,
       timeout: 30000,
