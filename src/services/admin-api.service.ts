@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { logger } from '../utils/logger';
+import { HttpError } from '../errors/http-error';
 import { HotelCreateRequest, mapHotelLikeToApiRequest } from './api-mappers/hotel-api.mapper';
 import { RestaurantCreateRequest, mapRestaurantItemToApiRequest } from './api-mappers/restaurant-api.mapper';
 import { LandmarkCreateRequest, mapLandmarkItemToApiRequest } from './api-mappers/landmark-api.mapper';
@@ -32,6 +33,7 @@ export class AdminApiService {
   constructor() {
     this.baseUrl = process.env.ADMIN_SERVICE_URL || 'http://a238f3f4e2b754227ad9a9c65b31b43e-1948367635.ap-southeast-1.elb.amazonaws.com/api/admin/crawl-data';
     // this.baseUrl = process.env.ADMIN_SERVICE_URL || 'http://localhost:8081/travel';
+
     this.client = axios.create({
       baseURL: this.baseUrl,
       timeout: 30000,
@@ -40,7 +42,9 @@ export class AdminApiService {
       },
     });
 
-    logger.info('AdminApiService initialized', { baseUrl: this.baseUrl });
+    logger.info('AdminApiService initialized', {
+      baseUrl: this.baseUrl,
+    });
   }
 
   async createHotel(
@@ -49,6 +53,7 @@ export class AdminApiService {
     sourceSite: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: HotelCreateRequest = mapHotelLikeToApiRequest(
@@ -70,6 +75,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/hotel',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -98,7 +104,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create hotel via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create hotel via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 
@@ -107,6 +117,7 @@ export class AdminApiService {
     detailLink: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: RestaurantCreateRequest = mapRestaurantItemToApiRequest(
@@ -124,6 +135,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/restaurant',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -152,7 +164,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create restaurant via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create restaurant via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 
@@ -161,6 +177,7 @@ export class AdminApiService {
     detailLink: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: LandmarkCreateRequest = mapLandmarkItemToApiRequest(
@@ -178,6 +195,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/landmark',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -206,7 +224,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create landmark via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create landmark via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 
@@ -215,6 +237,7 @@ export class AdminApiService {
     detailLink: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: AttractionCreateRequest = mapAttractionItemToApiRequest(
@@ -232,6 +255,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/attraction',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -260,7 +284,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create attraction via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create attraction via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 
@@ -269,6 +297,7 @@ export class AdminApiService {
     detailLink: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: SpaCreateRequest = mapSpaLikeToApiRequest(
@@ -286,6 +315,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/spa',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -314,7 +344,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create spa via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create spa via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 
@@ -323,6 +357,7 @@ export class AdminApiService {
     detailLink?: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: BusCreateRequest = mapBusLikeToApiRequest(
@@ -340,6 +375,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/bus',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -368,7 +404,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create bus via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create bus via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 
@@ -377,6 +417,7 @@ export class AdminApiService {
     detailLink: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: MotorbikeCreateRequest = mapMotorbikeLikeToApiRequest(
@@ -394,6 +435,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/motorbike',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -422,7 +464,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create motorbike via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create motorbike via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 
@@ -431,6 +477,7 @@ export class AdminApiService {
     detailLink: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: TourBusCreateRequest = mapTourBusLikeToApiRequest(
@@ -448,6 +495,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/tour-bus',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -476,7 +524,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create tour bus via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create tour bus via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 
@@ -485,6 +537,7 @@ export class AdminApiService {
     detailLink?: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: TrainTicketCreateRequest = mapTrainTicketLikeToApiRequest(
@@ -502,6 +555,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/train-ticket',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -530,7 +584,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create train ticket via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create train ticket via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 
@@ -539,6 +597,7 @@ export class AdminApiService {
     detailLink: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: MarketplaceCreateRequest = mapMarketplaceLikeToApiRequest(
@@ -556,6 +615,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/marketplace',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -584,7 +644,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create marketplace via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create marketplace via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 
@@ -593,6 +657,7 @@ export class AdminApiService {
     detailLink?: string,
     crawledBy?: string,
     crawlerName?: string,
+    authorizationHeader?: string,
   ): Promise<void> {
     try {
       const request: AirportTransferCreateRequest = mapAirportTransferLikeToApiRequest(
@@ -610,6 +675,7 @@ export class AdminApiService {
       const response = await this.client.post<BaseResponse<any>>(
         '/api/v1/airport-transfer',
         request,
+        authorizationHeader ? { headers: { Authorization: authorizationHeader } } : undefined,
       );
 
       if (response.data.success) {
@@ -640,7 +706,11 @@ export class AdminApiService {
         stack: error.stack,
       });
       
-      throw new Error(`Failed to create airport transfer via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`);
+      throw new HttpError(
+        `Failed to create airport transfer via admin API: ${errorMessage}${statusCode ? ` (Status: ${statusCode})` : ''}`,
+        statusCode,
+        errorData,
+      );
     }
   }
 }

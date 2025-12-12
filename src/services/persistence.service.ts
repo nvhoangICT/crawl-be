@@ -9,10 +9,12 @@ import {
 } from '../types/crawl';
 import { AdminApiService } from './admin-api.service';
 import { logger } from '../utils/logger';
+import { getErrorStatus } from '../errors/http-error';
 
 type PersistHandler = (
   request: BaseCrawlRequest,
   data: CrawlResultData,
+  authorizationHeader?: string,
 ) => Promise<void>;
 
 export class PersistenceService {
@@ -28,15 +30,24 @@ export class PersistenceService {
     };
   }
 
-  async persist(request: BaseCrawlRequest, data: CrawlResultData): Promise<void> {
+  async persist(
+    request: BaseCrawlRequest,
+    data: CrawlResultData,
+    authorizationHeader?: string,
+  ): Promise<void> {
     const handler = this.handlers[request.category];
     if (!handler) {
       return;
     }
 
     try {
-      await handler(request, data);
+      await handler(request, data, authorizationHeader);
     } catch (error) {
+      const status = getErrorStatus(error);
+      if (status === 401) {
+        // Let controller propagate 401 so FE can refresh token and retry
+        throw error;
+      }
       logger.error('Failed to persist crawl result via admin API', {
         category: request.category,
         site: request.site,
@@ -49,6 +60,7 @@ export class PersistenceService {
   private async persistHotel(
     request: BaseCrawlRequest,
     data: CrawlResultData,
+    authorizationHeader?: string,
   ): Promise<void> {
     const hotel = data as HotelItem | MapsItem | undefined;
     if (!hotel || typeof hotel !== 'object') {
@@ -68,12 +80,14 @@ export class PersistenceService {
       request.site,
       request.crawledBy,
       request.crawlerName,
+      authorizationHeader,
     );
   }
 
   private async persistLandmark(
     request: BaseCrawlRequest,
     data: CrawlResultData,
+    authorizationHeader?: string,
   ): Promise<void> {
     const landmark = data as LandmarkItem | undefined;
     if (!landmark || typeof landmark !== 'object') {
@@ -92,12 +106,14 @@ export class PersistenceService {
       detailLink,
       request.crawledBy,
       request.crawlerName,
+      authorizationHeader,
     );
   }
 
   private async persistRestaurant(
     request: BaseCrawlRequest,
     data: CrawlResultData,
+    authorizationHeader?: string,
   ): Promise<void> {
     const restaurant = data as RestaurantItem | undefined;
     if (!restaurant || typeof restaurant !== 'object') {
@@ -116,6 +132,7 @@ export class PersistenceService {
       detailLink,
       request.crawledBy,
       request.crawlerName,
+      authorizationHeader,
     );
   }
 }

@@ -31,6 +31,7 @@ export class CrawlService {
   async crawl(
     request: BaseCrawlRequest,
     onStream?: StreamCallback,
+    authorizationHeader?: string,
   ): Promise<CrawlResultData | CrawlResultData[]> {
     const crawler = this.crawlers[request.category];
     if (!crawler) {
@@ -38,7 +39,7 @@ export class CrawlService {
     }
 
     const data = await crawler.crawl(request, onStream);
-    await this.persistenceService.persist(request, data);
+    await this.persistenceService.persist(request, data, authorizationHeader);
     return data;
   }
 
@@ -58,6 +59,7 @@ export class CrawlService {
   async crawlDetail(
     request: BaseCrawlRequest,
     onStream?: StreamCallback,
+    authorizationHeader?: string,
   ): Promise<CrawlResultData> {
     const crawler = this.crawlers[request.category];
     if (!crawler) {
@@ -65,7 +67,7 @@ export class CrawlService {
     }
 
     const data = await crawler.crawlDetail(request, onStream);
-    await this.persistenceService.persist(request, data);
+    await this.persistenceService.persist(request, data, authorizationHeader);
     return data;
   }
 }

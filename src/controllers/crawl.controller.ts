@@ -2,8 +2,9 @@ import { Request, Response } from 'express';
 import { z } from 'zod';
 import { CrawlService } from '../services/crawl.service';
 import { logger } from '../utils/logger';
-import { CrawlResponse, StreamEvent } from '../types/crawl';
+import { CrawlResponse, PartialStreamEvent, StreamEvent } from '../types/crawl';
 import { CrawlJobService } from '../services/crawlJob.service';
+import { getErrorStatus } from '../errors/http-error';
 
 const bodySchema = z.object({
   category: z.enum(['news', 'hotels', 'restaurant', 'attraction', 'maps', 'landmarks']),
@@ -31,7 +32,8 @@ export class CrawlController {
       // Ensure URL is valid and absolute
       new URL(parsed.url);
 
-      const data = await this.crawlService.crawl(parsed);
+      const authorizationHeader = req.header('authorization');
+      const data = await this.crawlService.crawl(parsed, undefined, authorizationHeader);
 
       return res.json({
         success: true,
@@ -48,6 +50,14 @@ export class CrawlController {
           success: false,
           error: 'Invalid request payload',
           details: error.flatten(),
+        });
+      }
+
+      const status = getErrorStatus(error);
+      if (status === 401) {
+        return res.status(401).json({
+          success: false,
+          error: error instanceof Error ? error.message : 'Unauthorized',
         });
       }
 
@@ -99,7 +109,8 @@ export class CrawlController {
       const parsed = bodySchema.parse(req.body);
       new URL(parsed.url);
 
-      const data = await this.crawlService.crawlDetail(parsed);
+      const authorizationHeader = req.header('authorization');
+      const data = await this.crawlService.crawlDetail(parsed, undefined, authorizationHeader);
 
       return res.json({
         success: true,
@@ -115,6 +126,13 @@ export class CrawlController {
           success: false,
           error: 'Invalid request payload',
           details: error.flatten(),
+        });
+      }
+      const status = getErrorStatus(error);
+      if (status === 401) {
+        return res.status(401).json({
+          success: false,
+          error: error instanceof Error ? error.message : 'Unauthorized',
         });
       }
       return res.status(400).json({
@@ -255,12 +273,21 @@ export class CrawlController {
 
       // Helper function to send SSE message
       // All events already have requestId from BaseCrawler, but we log it here for tracking
-      const sendEvent = (event: StreamEvent) => {
+      const sendEvent = (event: StreamEvent | PartialStreamEvent) => {
         try {
-          const data = JSON.stringify(event);
+          const normalizedEvent: StreamEvent =
+            'requestId' in event && 'timestamp' in event
+              ? event
+              : ({
+                  ...event,
+                  requestId: streamRequestId,
+                  timestamp: Date.now(),
+                } as StreamEvent);
+
+          const data = JSON.stringify(normalizedEvent);
           res.write(`data: ${data}\n\n`);
           // Log event for debugging (optional)
-          logger.debug(`Stream event [${event.requestId}]: ${event.type}`);
+          logger.info(`Stream event [${normalizedEvent.requestId}]: ${normalizedEvent.type}`);
         } catch (error) {
           logger.error('Error sending stream event', error);
         }
@@ -274,10 +301,11 @@ export class CrawlController {
 
       // Start crawling with streaming callback
       // All events will have requestId automatically added by BaseCrawler
+      const authorizationHeader = req.header('authorization');
       this.crawlService
         .crawl(parsed, (event) => {
           sendEvent(event);
-        })
+        }, authorizationHeader)
         .then(() => {
           // Stream is complete, close connection
           res.end();
@@ -286,9 +314,15 @@ export class CrawlController {
           logger.error('Crawl stream error', error);
           // Generate a temporary requestId for error events
           const errorRequestId = `error-${Date.now()}`;
+          const status = getErrorStatus(error);
           sendEvent({
             type: 'error',
-            error: error instanceof Error ? error.message : 'Unknown error',
+            error:
+              status === 401
+                ? 'Unauthorized (401) - token expired, please refresh and retry'
+                : error instanceof Error
+                    ? error.message
+                    : 'Unknown error',
             requestId: errorRequestId,
             timestamp: Date.now(),
           });

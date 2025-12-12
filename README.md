@@ -88,6 +88,12 @@ NODE_ENV=development
 # Browser
 HEADLESS=true
 
+# Admin API (persist crawl result sang admin backend)
+# Base URL của admin backend (vd: http://localhost:8081/travel)
+ADMIN_SERVICE_URL=http://localhost:8081/travel
+# Bearer token để gọi admin API (bắt buộc nếu admin backend bật auth)
+ADMIN_API_BEARER_TOKEN=your_jwt_access_token
+
 # Database (optional - chỉ cần nếu muốn lưu dữ liệu)
 DATABASE_URL=postgres://user:password@localhost:5432/crawl_db
 # hoặc
