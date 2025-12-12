@@ -9,6 +9,8 @@ const bodySchema = z.object({
   category: z.enum(['news', 'hotels', 'restaurant', 'attraction', 'maps', 'landmarks']),
   site: z.string().min(2),
   url: z.string().url(),
+  crawledBy: z.string().uuid().optional(),
+  crawlerName: z.string().min(1).optional(),
   options: z
     .object({
       locale: z.string().optional(),

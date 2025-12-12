@@ -32,6 +32,10 @@ export interface HotelCreateRequest {
   ratingCleanliness?: number;
   description?: string;
   distanceToCenter?: string;
+  lat?: string;
+  lng?: string;
+  crawledBy?: string;
+  crawlerName?: string;
 }
 
 function extractProvince(address?: string): string | undefined {
@@ -95,6 +99,8 @@ export function mapHotelLikeToApiRequest(
   hotel: HotelLike,
   detailLink: string,
   sourceSite: string,
+  crawledBy?: string,
+  crawlerName?: string,
 ): HotelCreateRequest {
   const name = hotel.name?.trim();
   const safeName = name && name.length > 0 ? name : 'Unknown hotel';
@@ -131,5 +137,7 @@ export function mapHotelLikeToApiRequest(
     ratingValue,
     description: hotel.description ?? undefined,
     distanceToCenter,
+    crawledBy: crawledBy || undefined,
+    crawlerName: crawlerName || undefined,
   };
 }

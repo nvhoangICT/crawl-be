@@ -11,6 +11,14 @@ export interface BaseCrawlRequest {
   category: Category;
   site: string;
   url: string;
+  /**
+   * ID của user thực hiện crawl - dùng để lưu vào crawler_by
+   */
+  crawledBy?: string;
+  /**
+   * Tên user/crawler - dùng để lưu vào crawler_name
+   */
+  crawlerName?: string;
   options?: CrawlOptions;
 }
 

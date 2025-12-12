@@ -47,10 +47,18 @@ export class AdminApiService {
     hotel: HotelLike,
     detailLink: string,
     sourceSite: string,
+    crawledBy?: string,
+    crawlerName?: string,
   ): Promise<void> {
     try {
-      const request: HotelCreateRequest = mapHotelLikeToApiRequest(hotel, detailLink, sourceSite);
-      
+      const request: HotelCreateRequest = mapHotelLikeToApiRequest(
+        hotel,
+        detailLink,
+        sourceSite,
+        crawledBy,
+        crawlerName,
+      );
+
       logger.info('Calling admin API to create hotel...', { 
         name: request.name, 
         detailLink: request.detailLink 
@@ -100,13 +108,13 @@ export class AdminApiService {
     crawledBy?: string,
     crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: RestaurantCreateRequest = mapRestaurantItemToApiRequest(restaurant, detailLink, finalCrawledBy, finalCrawlerName);
+      const request: RestaurantCreateRequest = mapRestaurantItemToApiRequest(
+        restaurant,
+        detailLink,
+        crawledBy,
+        crawlerName,
+      );
       
       logger.info('Calling admin API to create restaurant', { 
         name: request.name, 
@@ -154,13 +162,13 @@ export class AdminApiService {
     crawledBy?: string,
     crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: LandmarkCreateRequest = mapLandmarkItemToApiRequest(landmark, detailLink, finalCrawledBy, finalCrawlerName);
+      const request: LandmarkCreateRequest = mapLandmarkItemToApiRequest(
+        landmark,
+        detailLink,
+        crawledBy,
+        crawlerName,
+      );
       
       logger.info('Calling admin API to create landmark', { 
         name: request.name, 
@@ -208,13 +216,13 @@ export class AdminApiService {
     crawledBy?: string,
     crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: AttractionCreateRequest = mapAttractionItemToApiRequest(attraction, detailLink, finalCrawledBy, finalCrawlerName);
+      const request: AttractionCreateRequest = mapAttractionItemToApiRequest(
+        attraction,
+        detailLink,
+        crawledBy,
+        crawlerName,
+      );
       
       logger.info('Calling admin API to create attraction', { 
         name: request.name, 
@@ -262,13 +270,13 @@ export class AdminApiService {
     crawledBy?: string,
     crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: SpaCreateRequest = mapSpaLikeToApiRequest(spa, detailLink, finalCrawledBy, finalCrawlerName);
+      const request: SpaCreateRequest = mapSpaLikeToApiRequest(
+        spa,
+        detailLink,
+        crawledBy,
+        crawlerName,
+      );
       
       logger.info('Calling admin API to create spa', { 
         name: request.name, 
@@ -316,13 +324,13 @@ export class AdminApiService {
     crawledBy?: string,
     crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: BusCreateRequest = mapBusLikeToApiRequest(bus, detailLink, finalCrawledBy, finalCrawlerName);
+      const request: BusCreateRequest = mapBusLikeToApiRequest(
+        bus,
+        detailLink,
+        crawledBy,
+        crawlerName,
+      );
       
       logger.info('Calling admin API to create bus', { 
         providerName: request.providerName, 
@@ -370,13 +378,13 @@ export class AdminApiService {
     crawledBy?: string,
     crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: MotorbikeCreateRequest = mapMotorbikeLikeToApiRequest(motorbike, detailLink, finalCrawledBy, finalCrawlerName);
+      const request: MotorbikeCreateRequest = mapMotorbikeLikeToApiRequest(
+        motorbike,
+        detailLink,
+        crawledBy,
+        crawlerName,
+      );
       
       logger.info('Calling admin API to create motorbike', { 
         location: request.location, 
@@ -424,13 +432,13 @@ export class AdminApiService {
     crawledBy?: string,
     crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: TourBusCreateRequest = mapTourBusLikeToApiRequest(tourBus, detailLink, finalCrawledBy, finalCrawlerName);
+      const request: TourBusCreateRequest = mapTourBusLikeToApiRequest(
+        tourBus,
+        detailLink,
+        crawledBy,
+        crawlerName,
+      );
       
       logger.info('Calling admin API to create tour bus', { 
         title: request.title, 
@@ -478,13 +486,13 @@ export class AdminApiService {
     crawledBy?: string,
     crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: TrainTicketCreateRequest = mapTrainTicketLikeToApiRequest(trainTicket, detailLink, finalCrawledBy, finalCrawlerName);
+      const request: TrainTicketCreateRequest = mapTrainTicketLikeToApiRequest(
+        trainTicket,
+        detailLink,
+        crawledBy,
+        crawlerName,
+      );
       
       logger.info('Calling admin API to create train ticket', { 
         route: request.route, 
@@ -532,13 +540,13 @@ export class AdminApiService {
     crawledBy?: string,
     crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: MarketplaceCreateRequest = mapMarketplaceLikeToApiRequest(marketplace, detailLink, finalCrawledBy, finalCrawlerName);
+      const request: MarketplaceCreateRequest = mapMarketplaceLikeToApiRequest(
+        marketplace,
+        detailLink,
+        crawledBy,
+        crawlerName,
+      );
       
       logger.info('Calling admin API to create marketplace', { 
         name: request.name, 
@@ -586,13 +594,13 @@ export class AdminApiService {
     crawledBy?: string,
     crawlerName?: string,
   ): Promise<void> {
-    // TODO: Implement logic to get crawledBy UUID and crawlerName from request context or user session
-    // For now, hardcoding temporary values if not provided
-    const finalCrawledBy = crawledBy || '00000000-0000-0000-0000-000000000001'; // TODO: Replace with actual crawler UUID
-    const finalCrawlerName = crawlerName || 'default-crawler'; // TODO: Replace with actual crawler name
-    
     try {
-      const request: AirportTransferCreateRequest = mapAirportTransferLikeToApiRequest(airportTransfer, detailLink, finalCrawledBy, finalCrawlerName);
+      const request: AirportTransferCreateRequest = mapAirportTransferLikeToApiRequest(
+        airportTransfer,
+        detailLink,
+        crawledBy,
+        crawlerName,
+      );
       
       logger.info('Calling admin API to create airport transfer', { 
         fromLocation: request.fromLocation, 

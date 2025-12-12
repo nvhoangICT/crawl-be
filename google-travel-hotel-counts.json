@@ -1,0 +1,879 @@
+{
+  "totalDurationMs": 1026412,
+  "results": [
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Hoàn+Kiếm,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Hoàn Kiếm, Thành phố Hà Nội",
+      "durationMs": 53065,
+      "error": "page.waitForSelector: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div.GDEAO') to be visible\u001b[22m\n"
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Cửa+Nam,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Cửa Nam, Thành phố Hà Nội",
+      "rawText": "Cửa Nam · 98 kết quả",
+      "count": 98,
+      "durationMs": 4361
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Ba+Đình,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Ba Đình, Thành phố Hà Nội",
+      "rawText": "Ba Đình · 1.576 kết quả",
+      "count": 1576,
+      "durationMs": 4800
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Ngọc+Hà,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Ngọc Hà, Thành phố Hà Nội",
+      "rawText": "Ngọc Hà · 116 kết quả",
+      "count": 116,
+      "durationMs": 4022
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Giảng+Võ,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Giảng Võ, Thành phố Hà Nội",
+      "rawText": "Giảng Võ · 154 kết quả",
+      "count": 154,
+      "durationMs": 4534
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Hai+Bà+Trưng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Hai Bà Trưng, Thành phố Hà Nội",
+      "rawText": "Ubnd Phường Hai Bà Trưng · 122 kết quả",
+      "count": 122,
+      "durationMs": 4576
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Vĩnh+Tuy,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Vĩnh Tuy, Thành phố Hà Nội",
+      "rawText": "Vĩnh Tuy · 212 kết quả",
+      "count": 212,
+      "durationMs": 4255
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Bạch+Mai,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Bạch Mai, Thành phố Hà Nội",
+      "rawText": "Bạch Mai · 149 kết quả",
+      "count": 149,
+      "durationMs": 4683
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Đống+Đa,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Đống Đa, Thành phố Hà Nội",
+      "rawText": "Phương Mai · 165 kết quả",
+      "count": 165,
+      "durationMs": 4078
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Kim+Liên,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Kim Liên, Thành phố Hà Nội",
+      "rawText": "Kim Liên · 140 kết quả",
+      "count": 140,
+      "durationMs": 4308
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Văn+Miếu+-+Quốc+Tử+Giám,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Văn Miếu - Quốc Tử Giám, Thành phố Hà Nội",
+      "rawText": "Văn Miếu – Quốc Tử Giám · 137 kết quả",
+      "count": 137,
+      "durationMs": 4127
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Láng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Láng, Thành phố Hà Nội",
+      "rawText": "Láng Hạ · 137 kết quả",
+      "count": 137,
+      "durationMs": 4646
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Ô+Chợ+Dừa,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Ô Chợ Dừa, Thành phố Hà Nội",
+      "rawText": "Ô Chợ Dừa · 77 kết quả",
+      "count": 77,
+      "durationMs": 4360
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Hồng+Hà,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Hồng Hà, Thành phố Hà Nội",
+      "durationMs": 45516,
+      "error": "page.waitForSelector: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div.GDEAO') to be visible\u001b[22m\n"
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Lĩnh+Nam,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Lĩnh Nam, Thành phố Hà Nội",
+      "rawText": "Lĩnh Nam · 216 kết quả",
+      "count": 216,
+      "durationMs": 4661
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Hoàng+Mai,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Hoàng Mai, Thành phố Hà Nội",
+      "rawText": "Hoàng Mai · 164 kết quả",
+      "count": 164,
+      "durationMs": 4433
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Vĩnh+Hưng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Vĩnh Hưng, Thành phố Hà Nội",
+      "rawText": "Vĩnh Hưng · 173 kết quả",
+      "count": 173,
+      "durationMs": 4198
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Tương+Mai,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Tương Mai, Thành phố Hà Nội",
+      "rawText": "Tương Mai · 144 kết quả",
+      "count": 144,
+      "durationMs": 4191
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Định+Công,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Định Công, Thành phố Hà Nội",
+      "rawText": "Định Công · 137 kết quả",
+      "count": 137,
+      "durationMs": 4253
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Hoàng+Liệt,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Hoàng Liệt, Thành phố Hà Nội",
+      "rawText": "Hoàng Liệt · 125 kết quả",
+      "count": 125,
+      "durationMs": 4203
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Yên+Sở,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Yên Sở, Thành phố Hà Nội",
+      "rawText": "Yên Sở · 146 kết quả",
+      "count": 146,
+      "durationMs": 4365
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Thanh+Xuân,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Thanh Xuân, Thành phố Hà Nội",
+      "rawText": "Phường Thanh Xuân · 116 kết quả",
+      "count": 116,
+      "durationMs": 4452
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Khương+Đình,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Khương Đình, Thành phố Hà Nội",
+      "rawText": "Khương Đình · 208 kết quả",
+      "count": 208,
+      "durationMs": 4635
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Phương+Liệt,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Phương Liệt, Thành phố Hà Nội",
+      "rawText": "Phương Liệt · 151 kết quả",
+      "count": 151,
+      "durationMs": 4663
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Cầu+Giấy,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Cầu Giấy, Thành phố Hà Nội",
+      "rawText": "Cầu Giấy · 758 kết quả",
+      "count": 758,
+      "durationMs": 4927
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Nghĩa+Đô,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Nghĩa Đô, Thành phố Hà Nội",
+      "rawText": "Nghĩa Đô · 125 kết quả",
+      "count": 125,
+      "durationMs": 4572
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Yên+Hoà,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Yên Hoà, Thành phố Hà Nội",
+      "rawText": "Yên Hoà · 79 kết quả",
+      "count": 79,
+      "durationMs": 4395
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Tây+Hồ,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Tây Hồ, Thành phố Hà Nội",
+      "rawText": "Tây Hồ · 638 kết quả",
+      "count": 638,
+      "durationMs": 4596
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Phú+Thượng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Phú Thượng, Thành phố Hà Nội",
+      "rawText": "Phú Thượng · 158 kết quả",
+      "count": 158,
+      "durationMs": 4603
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Tây+Tựu,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Tây Tựu, Thành phố Hà Nội",
+      "rawText": "Tây Tựu · 325 kết quả",
+      "count": 325,
+      "durationMs": 4436
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Phú+Diễn,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Phú Diễn, Thành phố Hà Nội",
+      "rawText": "Phú Diễn · 202 kết quả",
+      "count": 202,
+      "durationMs": 4179
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Xuân+Đỉnh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Xuân Đỉnh, Thành phố Hà Nội",
+      "rawText": "Phường Xuân Đỉnh · 144 kết quả",
+      "count": 144,
+      "durationMs": 4347
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Đông+Ngạc,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Đông Ngạc, Thành phố Hà Nội",
+      "rawText": "Đông Ngạc · 138 kết quả",
+      "count": 138,
+      "durationMs": 4048
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Thượng+Cát,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Thượng Cát, Thành phố Hà Nội",
+      "rawText": "Thượng Cát · 302 kết quả",
+      "count": 302,
+      "durationMs": 4301
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Từ+Liêm,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Từ Liêm, Thành phố Hà Nội",
+      "rawText": "Nam Từ Liêm · 452 kết quả",
+      "count": 452,
+      "durationMs": 4738
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Xuân+Phương,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Xuân Phương, Thành phố Hà Nội",
+      "rawText": "Xuân Phương · 154 kết quả",
+      "count": 154,
+      "durationMs": 4354
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Tây+Mỗ,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Tây Mỗ, Thành phố Hà Nội",
+      "rawText": "Tây Mỗ · 230 kết quả",
+      "count": 230,
+      "durationMs": 4538
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Đại+Mỗ,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Đại Mỗ, Thành phố Hà Nội",
+      "rawText": "Đại Mỗ · 158 kết quả",
+      "count": 158,
+      "durationMs": 4743
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Long+Biên,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Long Biên, Thành phố Hà Nội",
+      "rawText": "Long Biên · 315 kết quả",
+      "count": 315,
+      "durationMs": 4571
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Bồ+Đề,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Bồ Đề, Thành phố Hà Nội",
+      "rawText": "Bồ Đề · 44 kết quả",
+      "count": 44,
+      "durationMs": 4566
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Việt+Hưng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Việt Hưng, Thành phố Hà Nội",
+      "rawText": "Việt Hưng · 505 kết quả",
+      "count": 505,
+      "durationMs": 4505
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Phúc+Lợi,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Phúc Lợi, Thành phố Hà Nội",
+      "rawText": "Phúc Lợi · 167 kết quả",
+      "count": 167,
+      "durationMs": 4349
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Hà+Đông,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Hà Đông, Thành phố Hà Nội",
+      "rawText": "Hà Đông · 134 kết quả",
+      "count": 134,
+      "durationMs": 4087
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Dương+Nội,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Dương Nội, Thành phố Hà Nội",
+      "rawText": "Dương Nội · 152 kết quả",
+      "count": 152,
+      "durationMs": 4517
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Yên+Nghĩa,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Yên Nghĩa, Thành phố Hà Nội",
+      "rawText": "Yên Nghĩa · 162 kết quả",
+      "count": 162,
+      "durationMs": 4372
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Phú+Lương,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Phú Lương, Thành phố Hà Nội",
+      "rawText": "Phú Lương · 116 kết quả",
+      "count": 116,
+      "durationMs": 4352
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Kiến+Hưng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Kiến Hưng, Thành phố Hà Nội",
+      "rawText": "Kiến Hưng · 125 kết quả",
+      "count": 125,
+      "durationMs": 4089
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Thanh+Trì,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Thanh Trì, Thành phố Hà Nội",
+      "rawText": "Thanh Trì · 131 kết quả",
+      "count": 131,
+      "durationMs": 4477
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Đại+Thanh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Đại Thanh, Thành phố Hà Nội",
+      "rawText": "Hưng Đạo · 188 kết quả",
+      "count": 188,
+      "durationMs": 4524
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Nam+Phù,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Nam Phù, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 5037
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Ngọc+Hồi,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Ngọc Hồi, Thành phố Hà Nội",
+      "rawText": "Ngọc Hồi · 161 kết quả",
+      "count": 161,
+      "durationMs": 4538
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Thanh+Liệt,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Thanh Liệt, Thành phố Hà Nội",
+      "rawText": "Thịnh Liệt · 543 kết quả",
+      "count": 543,
+      "durationMs": 4274
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Thượng+Phúc,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Thượng Phúc, Thành phố Hà Nội",
+      "durationMs": 45514,
+      "error": "page.waitForSelector: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div.GDEAO') to be visible\u001b[22m\n"
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Thường+Tín,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Thường Tín, Thành phố Hà Nội",
+      "rawText": "Tt. Thường Tín · 156 kết quả",
+      "count": 156,
+      "durationMs": 4708
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Chương+Dương,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Chương Dương, Thành phố Hà Nội",
+      "rawText": "Chương Dương · 125 kết quả",
+      "count": 125,
+      "durationMs": 4144
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Hồng+Vân,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Hồng Vân, Thành phố Hà Nội",
+      "rawText": "Hồng Vân · 108 kết quả",
+      "count": 108,
+      "durationMs": 4321
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Phú+Xuyên,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Phú Xuyên, Thành phố Hà Nội",
+      "durationMs": 45582,
+      "error": "page.waitForSelector: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div.GDEAO') to be visible\u001b[22m\n"
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Phượng+Dực,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Phượng Dực, Thành phố Hà Nội",
+      "rawText": "Phượng Dực · 323 kết quả",
+      "count": 323,
+      "durationMs": 4473
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Chuyên+Mỹ,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Chuyên Mỹ, Thành phố Hà Nội",
+      "rawText": "Chuyên Mỹ · 55 kết quả",
+      "count": 55,
+      "durationMs": 4285
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Đại+Xuyên,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Đại Xuyên, Thành phố Hà Nội",
+      "rawText": "Đại Xuyên · 56 kết quả",
+      "count": 56,
+      "durationMs": 4096
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Thanh+Oai,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Thanh Oai, Thành phố Hà Nội",
+      "rawText": "Thanh Oai · 150 kết quả",
+      "count": 150,
+      "durationMs": 4472
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Bình+Minh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Bình Minh, Thành phố Hà Nội",
+      "rawText": "Bình Minh · 150 kết quả",
+      "count": 150,
+      "durationMs": 4364
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Tam+Hưng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Tam Hưng, Thành phố Hà Nội",
+      "rawText": "Tam Hưng · 150 kết quả",
+      "count": 150,
+      "durationMs": 4274
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Dân+Hoà,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Dân Hoà, Thành phố Hà Nội",
+      "rawText": "Dân Hòa · 164 kết quả",
+      "count": 164,
+      "durationMs": 4286
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Vân+Đình,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Vân Đình, Thành phố Hà Nội",
+      "rawText": "Tt. Vân Đình · 62 kết quả",
+      "count": 62,
+      "durationMs": 4232
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Ứng+Thiên,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Ứng Thiên, Thành phố Hà Nội",
+      "rawText": "Đình Ứng Thiên · 106 kết quả",
+      "count": 106,
+      "durationMs": 4229
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Hoà+Xá,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Hoà Xá, Thành phố Hà Nội",
+      "rawText": "Thái Hòa · 61 kết quả",
+      "count": 61,
+      "durationMs": 4198
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Ứng+Hoà,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Ứng Hoà, Thành phố Hà Nội",
+      "rawText": "Thái Hòa · 124 kết quả",
+      "count": 124,
+      "durationMs": 4336
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Mỹ+Đức,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Mỹ Đức, Thành phố Hà Nội",
+      "rawText": "Mỹ Đức · 263 kết quả",
+      "count": 263,
+      "durationMs": 4444
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Hồng+Sơn,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Hồng Sơn, Thành phố Hà Nội",
+      "rawText": "Hồng Sơn · 79 kết quả",
+      "count": 79,
+      "durationMs": 4212
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Phúc+Sơn,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Phúc Sơn, Thành phố Hà Nội",
+      "durationMs": 45771,
+      "error": "page.waitForSelector: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div.GDEAO') to be visible\u001b[22m\n"
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Hương+Sơn,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Hương Sơn, Thành phố Hà Nội",
+      "rawText": "Hương Sơn · 44 kết quả",
+      "count": 44,
+      "durationMs": 4499
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Chương+Mỹ,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Chương Mỹ, Thành phố Hà Nội",
+      "rawText": "Chương Mỹ · 306 kết quả",
+      "count": 306,
+      "durationMs": 4307
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Phú+Nghĩa,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Phú Nghĩa, Thành phố Hà Nội",
+      "rawText": "Phú Nghĩa · 243 kết quả",
+      "count": 243,
+      "durationMs": 4327
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Xuân+Mai,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Xuân Mai, Thành phố Hà Nội",
+      "rawText": "Tt. Xuân Mai · 108 kết quả",
+      "count": 108,
+      "durationMs": 4474
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Trần+Phú,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Trần Phú, Thành phố Hà Nội",
+      "rawText": "Trần Phú · 596 kết quả",
+      "count": 596,
+      "durationMs": 4590
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Hoà+Phú,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Hoà Phú, Thành phố Hà Nội",
+      "rawText": "Hòa Phú · 57 kết quả",
+      "count": 57,
+      "durationMs": 4432
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Quảng+Bị,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Quảng Bị, Thành phố Hà Nội",
+      "rawText": "Quảng Bị · 157 kết quả",
+      "count": 157,
+      "durationMs": 4401
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Minh+Châu,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Minh Châu, Thành phố Hà Nội",
+      "rawText": "Minh Châu · 119 kết quả",
+      "count": 119,
+      "durationMs": 4219
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Quảng+Oai,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Quảng Oai, Thành phố Hà Nội",
+      "rawText": "Quảng Oai · 116 kết quả",
+      "count": 116,
+      "durationMs": 4179
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Vật+Lại,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Vật Lại, Thành phố Hà Nội",
+      "rawText": "Vật Lại · 368 kết quả",
+      "count": 368,
+      "durationMs": 4427
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Cổ+Đô,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Cổ Đô, Thành phố Hà Nội",
+      "rawText": "Cổ Đô · 113 kết quả",
+      "count": 113,
+      "durationMs": 4258
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Bất+Bạt,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Bất Bạt, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 4814
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Suối+Hai,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Suối Hai, Thành phố Hà Nội",
+      "rawText": "Suối Hai · 123 kết quả",
+      "count": 123,
+      "durationMs": 4338
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Ba+Vì,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Ba Vì, Thành phố Hà Nội",
+      "rawText": "Ba Vì · 408 kết quả",
+      "count": 408,
+      "durationMs": 4284
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Yên+Bài,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Yên Bài, Thành phố Hà Nội",
+      "rawText": "Yên Bài · 395 kết quả",
+      "count": 395,
+      "durationMs": 4152
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Sơn+Tây,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Sơn Tây, Thành phố Hà Nội",
+      "rawText": "Thị Xã Sơn Tây · 399 kết quả",
+      "count": 399,
+      "durationMs": 4127
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Phường+Tùng+Thiện,+Thành+phố+Hà+Nội",
+      "queryLabel": "Phường Tùng Thiện, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 3.965 kết quả",
+      "count": 3965,
+      "durationMs": 4562
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Đoài+Phương,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Đoài Phương, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 4487
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Phúc+Thọ,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Phúc Thọ, Thành phố Hà Nội",
+      "rawText": "Tt. Phúc Thọ · 131 kết quả",
+      "count": 131,
+      "durationMs": 4682
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Phúc+Lộc,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Phúc Lộc, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 4441
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Hát+Môn,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Hát Môn, Thành phố Hà Nội",
+      "rawText": "Hát Môn · 707 kết quả",
+      "count": 707,
+      "durationMs": 4507
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Thạch+Thất,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Thạch Thất, Thành phố Hà Nội",
+      "rawText": "Thạch Thất · 121 kết quả",
+      "count": 121,
+      "durationMs": 3934
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Hạ+Bằng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Hạ Bằng, Thành phố Hà Nội",
+      "rawText": "Hạ Bằng · 137 kết quả",
+      "count": 137,
+      "durationMs": 4000
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Tây+Phương,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Tây Phương, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 5058
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Hoà+Lạc,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Hoà Lạc, Thành phố Hà Nội",
+      "durationMs": 45309,
+      "error": "page.waitForSelector: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div.GDEAO') to be visible\u001b[22m\n"
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Yên+Xuân,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Yên Xuân, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 4815
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Quốc+Oai,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Quốc Oai, Thành phố Hà Nội",
+      "rawText": "Quốc Oai · 151 kết quả",
+      "count": 151,
+      "durationMs": 4378
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Hưng+Đạo,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Hưng Đạo, Thành phố Hà Nội",
+      "rawText": "Hưng Đạo · 188 kết quả",
+      "count": 188,
+      "durationMs": 4724
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Kiều+Phú,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Kiều Phú, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 4633
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Phú+Cát,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Phú Cát, Thành phố Hà Nội",
+      "rawText": "Phú Cát · 143 kết quả",
+      "count": 143,
+      "durationMs": 4404
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Hoài+Đức,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Hoài Đức, Thành phố Hà Nội",
+      "rawText": "Hoài Đức · 282 kết quả",
+      "count": 282,
+      "durationMs": 4618
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Dương+Hoà,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Dương Hoà, Thành phố Hà Nội",
+      "rawText": "Cầu T11 · 124 kết quả",
+      "count": 11,
+      "durationMs": 4450
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Sơn+Đồng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Sơn Đồng, Thành phố Hà Nội",
+      "rawText": "Sơn Đồng · 129 kết quả",
+      "count": 129,
+      "durationMs": 4542
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+An+Khánh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã An Khánh, Thành phố Hà Nội",
+      "rawText": "An Khánh · 257 kết quả",
+      "count": 257,
+      "durationMs": 4188
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Đan+Phượng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Đan Phượng, Thành phố Hà Nội",
+      "rawText": "X. Đan Phượng · 426 kết quả",
+      "count": 426,
+      "durationMs": 4686
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Ô+Diên,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Ô Diên, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 4910
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Liên+Minh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Liên Minh, Thành phố Hà Nội",
+      "rawText": "Phố Giang Văn Minh · 127 kết quả",
+      "count": 127,
+      "durationMs": 4718
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Gia+Lâm,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Gia Lâm, Thành phố Hà Nội",
+      "rawText": "Gia Lâm · 115 kết quả",
+      "count": 115,
+      "durationMs": 4568
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Thuận+An,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Thuận An, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 4851
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Bát+Tràng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Bát Tràng, Thành phố Hà Nội",
+      "rawText": "Bát Tràng · 1.593 kết quả",
+      "count": 1593,
+      "durationMs": 4465
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Phù+Đổng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Phù Đổng, Thành phố Hà Nội",
+      "rawText": "Phù Đổng · 105 kết quả",
+      "count": 105,
+      "durationMs": 4156
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Thư+Lâm,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Thư Lâm, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 3.965 kết quả",
+      "count": 3965,
+      "durationMs": 5238
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Đông+Anh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Đông Anh, Thành phố Hà Nội",
+      "rawText": "Đông Anh · 203 kết quả",
+      "count": 203,
+      "durationMs": 4370
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Phúc+Thịnh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Phúc Thịnh, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 4816
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Thiên+Lộc,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Thiên Lộc, Thành phố Hà Nội",
+      "durationMs": 45565,
+      "error": "page.waitForSelector: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div.GDEAO') to be visible\u001b[22m\n"
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Vĩnh+Thanh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Vĩnh Thanh, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 4862
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Mê+Linh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Mê Linh, Thành phố Hà Nội",
+      "rawText": "Mê Linh · 201 kết quả",
+      "count": 201,
+      "durationMs": 4297
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Yên+Lãng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Yên Lãng, Thành phố Hà Nội",
+      "rawText": "Phố Yên Lãng · 149 kết quả",
+      "count": 149,
+      "durationMs": 4636
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Tiến+Thắng,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Tiến Thắng, Thành phố Hà Nội",
+      "rawText": "Tiến Thắng · 187 kết quả",
+      "count": 187,
+      "durationMs": 4616
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Quang+Minh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Quang Minh, Thành phố Hà Nội",
+      "rawText": "Quang Minh · 105 kết quả",
+      "count": 105,
+      "durationMs": 4883
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Sóc+Sơn,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Sóc Sơn, Thành phố Hà Nội",
+      "rawText": "Sóc Sơn · 375 kết quả",
+      "count": 375,
+      "durationMs": 4575
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Đa+Phúc,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Đa Phúc, Thành phố Hà Nội",
+      "durationMs": 45685,
+      "error": "page.waitForSelector: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('div.GDEAO') to be visible\u001b[22m\n"
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Nội+Bài,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Nội Bài, Thành phố Hà Nội",
+      "rawText": "Hà Nội · 2.630 kết quả",
+      "count": 2630,
+      "durationMs": 4959
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Trung+Giã,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Trung Giã, Thành phố Hà Nội",
+      "rawText": "Trung Giã · 172 kết quả",
+      "count": 172,
+      "durationMs": 4511
+    },
+    {
+      "url": "https://www.google.com/travel/search?q=Xã+Kim+Anh,+Thành+phố+Hà+Nội",
+      "queryLabel": "Xã Kim Anh, Thành phố Hà Nội",
+      "rawText": "Xã Kim Anh · 105 kết quả",
+      "count": 105,
+      "durationMs": 4706
+    }
+  ]
+}
